@@ -55,23 +55,35 @@ void triple_sum(vector<int> a, vector<int> b, vector<int> c) {
 		///////////////// logic to solve TLE.
 
 		for(int j = 0; j < a.size(); j++) {
-			if(j == a.size() - 1 && temp >= a[j]) {
-				a_index = j+1;
-				break;
+			// if(j == a.size() - 1 && temp >= a[j]) {
+			// 	a_index = j+1;
+			// 	break;
+			// }
+			// if(a[j] > temp) {
+			// 	a_index = j;
+			// 	break;
+			// }
+			if(a[j] <= temp) {
+				a_index++;
 			}
-			if(a[j] > temp) {
-				a_index = j;
+			else {
 				break;
 			}
 		}
 
 		for(int j = 0; j < c.size(); j++) {
-			if(j == c.size() - 1 && temp >= c[j]) {
-				c_index = j+1;
-				break;
+			// if(j == c.size() - 1 && temp >= c[j]) {
+			// 	c_index = j+1;
+			// 	break;
+			// }
+			// if(c[j] > temp) {
+			// 	c_index = j;
+			// 	break;
+			// }
+			if(c[j] <= temp) {
+				c_index++;
 			}
-			if(c[j] > temp) {
-				c_index = j;
+			else {
 				break;
 			}
 		}
