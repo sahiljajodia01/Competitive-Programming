@@ -19,9 +19,9 @@ void largest_rectangle(vector<int> v) {
 			pos.push(i);
 			height.push(v[i]);
 		}
-		else if(v[i] < temp) {
+		else if(v[i] <= temp) {
 
-			while(!pos.empty() && v[i] < height.top()) {
+			while(!pos.empty() && v[i] <= height.top()) {
 				int temp2;
 				tempPos = pos.top();
 				temp2 = height.top() * (i - tempPos);
@@ -30,7 +30,7 @@ void largest_rectangle(vector<int> v) {
 				height.pop();
 				pos.pop();
 			}
-			height.push(temp);
+			height.push(v[i]);
 			pos.push(tempPos);
 		}
 
