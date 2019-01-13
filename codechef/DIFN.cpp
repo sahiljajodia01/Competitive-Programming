@@ -4,11 +4,12 @@ using namespace std;
 
 struct node {
     int data;
-    bool visited;
+    bool visited, inQueue;
 
     node() {
         data = 1;
         visited = false;
+        inQueue = false;
     }
 };
 
@@ -26,8 +27,9 @@ bool areDistinct(vector< pair<string, int> > arr) {
     return (s.size() == arr.size());
 }
 
-int problematicNodes(vector< pair<string, int> > arr) {
+vector<int> problematicNodes(vector< pair<string, int> > arr) {
     int n = arr.size();
+    vector<int> v;
     // Put all array elements in a map
     map<int, int> s;
     for(int i=0; i<n; i++){
@@ -37,9 +39,10 @@ int problematicNodes(vector< pair<string, int> > arr) {
 
     for(map<int, int>::iterator it = s.begin(); it != s.end(); it++) {
         if(it->second > 1) {
-            return it->first;
+            v.push_back(it->first);
         }
     }
+    return v;
 }
 
 
@@ -47,6 +50,8 @@ int problematicNodes(vector< pair<string, int> > arr) {
 void diff_neighbours(node** arr, int N, int M) {
     vector<string> q;
     // arr[0][0].data = 1;
+    arr[0][0].visited = true;
+    arr[0][0].inQueue = true;
     if(N == 1 && M == 1) {
         cout << 1 << "\n";
         cout << 1 << "\n";
@@ -54,15 +59,19 @@ void diff_neighbours(node** arr, int N, int M) {
     }
     else if(N == 1) {
         q.push_back("0 1");
+        arr[0][1].inQueue = true;
         // arr[0][1].data = 1;
     }
     else if(M == 1) {
         q.push_back("1 0");
+        arr[1][0].inQueue = true;
         // arr[1][0].data = 1;
     }
     else {
         q.push_back("0 1");
         q.push_back("1 0");
+        arr[0][1].inQueue = true;
+        arr[1][0].inQueue = true;
         // arr[0][1].data = 1;
         arr[1][0].data = 2;
     }
@@ -130,31 +139,36 @@ void diff_neighbours(node** arr, int N, int M) {
             col = token1 - '0';
 
             if(!areDistinct(m)) {
-                int conflictValue = problematicNodes(m);
-                prev = 1;
-                if(m[it].second == conflictValue) {
-                    while (true) {
-                        int flag = 0;
-                        for (int it1 = 0; it1 < m.size(); it1++) {
+                vector<int> conflictValue = problematicNodes(m);
 
-                            int val = m[it1].second;
-                            if (prev + 1 == val && m[it].first != m[it1].first) {
-                                flag = 1;
+                for(int p = 0; p < conflictValue.size(); p++) {
+                    prev = 1;
+                    if(m[it].second == conflictValue[p]) {
+                        while (true) {
+                            int flag = 0;
+                            for (int it1 = 0; it1 < m.size(); it1++) {
+
+                                int val = m[it1].second;
+                                if (prev + 1 == val && m[it].first != m[it1].first) {
+                                    flag = 1;
+                                    break;
+                                }
+                            }
+                            if (flag == 0) {
+                                arr[row][col].data = prev + 1;
+                                m[it].second = prev + 1;
                                 break;
                             }
+                            prev++;
                         }
-                        if (flag == 0) {
-                            arr[row][col].data = prev + 1;
-                            m[it].second = prev + 1;
-                            break;
-                        }
-                        prev++;
                     }
                 }
+                
             }
 
 
-            if(arr[row][col].visited == false) {
+            if(arr[row][col].visited == false && arr[row][col].inQueue == false) {
+                arr[row][col].inQueue = true;
                 string index = to_string(row) + " " + to_string(col);
                 q.push_back(index);
             }
@@ -170,6 +184,11 @@ void diff_neighbours(node** arr, int N, int M) {
             cout << "\n";
         }
 
+        cout << "Queue: " << "\n";
+        for(int i = 0; i < q.size(); i++) {
+            cout << q[i] << " - ";
+        }
+        cout << "\n";
         cout << "----------------------------------" << "\n";
         q.erase(q.begin());
     }
