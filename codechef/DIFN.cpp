@@ -4,12 +4,12 @@ using namespace std;
 
 struct node {
     int data;
-    bool visited, inQueue;
+    bool visited;
 
     node() {
         data = 1;
         visited = false;
-        inQueue = false;
+        // inQueue = false;
     }
 };
 
@@ -51,7 +51,7 @@ void diff_neighbours(node** arr, int N, int M) {
     vector<string> q;
     // arr[0][0].data = 1;
     arr[0][0].visited = true;
-    arr[0][0].inQueue = true;
+    // arr[0][0].inQueue = true;
     if(N == 1 && M == 1) {
         cout << 1 << "\n";
         cout << 1 << "\n";
@@ -59,19 +59,19 @@ void diff_neighbours(node** arr, int N, int M) {
     }
     else if(N == 1) {
         q.push_back("0 1");
-        arr[0][1].inQueue = true;
+        arr[0][1].visited = true;
         // arr[0][1].data = 1;
     }
     else if(M == 1) {
         q.push_back("1 0");
-        arr[1][0].inQueue = true;
+        arr[1][0].visited = true;
         // arr[1][0].data = 1;
     }
     else {
         q.push_back("0 1");
         q.push_back("1 0");
-        arr[0][1].inQueue = true;
-        arr[1][0].inQueue = true;
+        arr[0][1].visited = true;
+        arr[1][0].visited = true;
         // arr[0][1].data = 1;
         arr[1][0].data = 2;
     }
@@ -81,7 +81,7 @@ void diff_neighbours(node** arr, int N, int M) {
         string ele = q.front();
         char ar[ele.length() + 1];
         strcpy(ar, ele.c_str());
-        // q.erase(q.begin());
+        q.erase(q.begin());
 
         char token1 = *strtok(ar, " ");
         int row = token1 - '0';
@@ -167,8 +167,8 @@ void diff_neighbours(node** arr, int N, int M) {
             }
 
 
-            if(arr[row][col].visited == false && arr[row][col].inQueue == false) {
-                arr[row][col].inQueue = true;
+            if(arr[row][col].visited == false) {
+                arr[row][col].visited = true;
                 string index = to_string(row) + " " + to_string(col);
                 q.push_back(index);
             }
@@ -190,7 +190,7 @@ void diff_neighbours(node** arr, int N, int M) {
         }
         cout << "\n";
         cout << "----------------------------------" << "\n";
-        q.erase(q.begin());
+        // q.erase(q.begin());
     }
 
     cout << "Final Array: " << "\n";
