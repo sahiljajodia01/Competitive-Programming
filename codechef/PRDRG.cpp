@@ -5,13 +5,25 @@ using namespace std;
 vector<int> v;
 
 void dist(int n) {
-	int num, den;
+	if(n == 1) {
+		v.push_back(1);
+		v.push_back(2);
+		return;
+	}
+	int num = 1, den = 2;
 
-	num = ;
-	den = pow(2, n);
-
+	for(int i = 1; i < n; i++) {
+		if(i % 2 != 0) {
+			num = 2*num - 1;
+		}
+		else {
+			num = 2*num + 1;
+		}
+		den = 2*den;
+	}
 	v.push_back(num);
 	v.push_back(den);
+	return;
 }
 
 
