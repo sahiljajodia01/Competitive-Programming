@@ -6,6 +6,9 @@
         "regex": "cpp",
         "string": "cpp",
         "string_view": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "memory": "cpp",
+        "utility": "cpp",
+        "algorithm": "cpp"
     }
 }
