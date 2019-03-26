@@ -26,7 +26,7 @@ void chef_chal(vector<ll> v, ll k) {
             continue;
         }
         flag = 1;
-        cout << "For first = " << first << "\n";
+        // cout << "For first = " << first << "\n";
         vector<ll> ind;
         for(ll i = 0; i < v.size(); i++) {
             if(v[i] == first) {
@@ -34,11 +34,11 @@ void chef_chal(vector<ll> v, ll k) {
             }
         }
 
-        cout << "Index array: " << "\n";
-        for(ll i = 0; i < ind.size(); i++) {
-            cout << ind[i] << " ";
-        }
-        cout << "\n";
+        // cout << "Index array: " << "\n";
+        // for(ll i = 0; i < ind.size(); i++) {
+        //     cout << ind[i] << " ";
+        // }
+        // cout << "\n";
         ll dev = LONG_MAX;
         ll index = 0;
         
@@ -66,8 +66,8 @@ void chef_chal(vector<ll> v, ll k) {
             }
         }
 
-        cout << "Perfect index: " << index << "\n";
-        cout << "Perfect index std: " << dev << "\n";
+        // cout << "Perfect index: " << index << "\n";
+        // cout << "Perfect index std: " << dev << "\n";
 
         ll total_swap = 0;
         vector<ll> differences;
@@ -82,11 +82,11 @@ void chef_chal(vector<ll> v, ll k) {
 
         sort(differences.begin(), differences.end());
 
-        cout << "Differences array: " << "\n";
-        for(int i = 0; i < differences.size(); i++) {
-            cout << differences[i] << " ";
-        }
-        cout << "\n";
+        // cout << "Differences array: " << "\n";
+        // for(int i = 0; i < differences.size(); i++) {
+        //     cout << differences[i] << " ";
+        // }
+        // cout << "\n";
 
         for(ll i = 0; i < k-1; i++) {
             total_swap += differences[i];
@@ -96,8 +96,8 @@ void chef_chal(vector<ll> v, ll k) {
             min_swaps = total_swap;
         }
 
-        cout << "Total_ swaps: " << total_swap << "\n";
-        cout << "--------------------------------------------------- " << "\n";
+        // cout << "Total_ swaps: " << total_swap << "\n";
+        // cout << "--------------------------------------------------- " << "\n";
 
     }
     if(flag == 0) {
