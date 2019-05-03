@@ -8,6 +8,7 @@
         "chrono": "cpp",
         "complex": "cpp",
         "valarray": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "iostream": "cpp"
     }
 }
