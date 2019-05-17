@@ -1,3 +1,8 @@
+
+// O(n^3) Brute force approach. Accepted only for 30 points.
+// A O(n^2) aproach using tables and O(n) approach using stacks is also available.
+// Also a divide and conquer approach is mentioned in the discussions.
+
 #include <bits/stdc++.h>
 
 using namespace std;
