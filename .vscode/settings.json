@@ -37,5 +37,6 @@
         "system_error": "cpp",
         "limits": "cpp",
         "ratio": "cpp"
-    }
+    },
+    "workbench.colorCustomizations": {}
 }
