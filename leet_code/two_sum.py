@@ -1,5 +1,7 @@
 # https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/546/
 
+
+############## My original solution. Basically this is a hack to give a right answer ############
 # class Solution:
 #     def twoSum(self, nums: List[int], target: int) -> List[int]:
 #         d = {}
@@ -29,3 +31,19 @@
                 
 #                 break
 #         return ans
+
+
+############ Elegent solution that I found out on Leetcode ###############
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        d = {}
+
+        ans = [-1, -1]
+        for i in range(len(nums)):
+            if (target - nums[i]) in d.keys():
+                ans[0] = d[(target - nums[i])]
+                ans[1] = i
+                break
+            d[nums[i]] = i
+
+        return ans
