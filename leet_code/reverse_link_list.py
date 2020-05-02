@@ -22,3 +22,24 @@ class Solution:
             current = next_ptr
             
         return prev_ptr
+
+
+############### Recursive Solution #################
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        
+        
+        def solve(head):
+            print("head: ", head.val)
+            if head.next == None:
+                return head
+            else:
+                curr = solve(head.next)
+                head.next.next = head
+                head.next = None
+                return curr
+        
+        if head == None:
+            return None
+        else:
+            return solve(head)

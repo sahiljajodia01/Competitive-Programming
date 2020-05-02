@@ -33,6 +33,33 @@ class MinStack:
     def getMin(self) -> int:
         return self.min
 
+######### O(1) time complexity solution using a seperate stack for storing min values
+class MinStack:
+
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        self.stack = []
+        self.min = float('inf')
+        self.min_stack = []
+        
+
+    def push(self, x: int) -> None:
+        if x <= self.min:
+            self.min_stack.append(self.min)
+            self.min = x
+        self.stack.append(x)
+
+    def pop(self) -> None:
+        if self.stack.pop() == self.min:
+            self.min = self.min_stack.pop()
+
+    def top(self) -> int:
+        return self.stack[-1]
+
+    def getMin(self) -> int:
+        return self.min
 
 # Your MinStack object will be instantiated and called as such:
 # obj = MinStack()
